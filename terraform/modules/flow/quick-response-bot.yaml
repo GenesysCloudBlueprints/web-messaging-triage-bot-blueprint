@@ -1,0 +1,109 @@
+botFlow:
+  name: "{{flow_name}}"
+  division: New Home
+  startUpRef: "/botFlow/bots/bot[Default Bot_10]"
+  defaultLanguage: "{{default_language}}"
+  supportedLanguages:
+    en-us:
+      none: true
+  settingsActionDefaults:
+    askForIntent:
+      voiceEndOfInputTimeout:
+        lit:
+          seconds: 1
+    askForBoolean:
+      voiceEndOfInputTimeout:
+        lit:
+          seconds: 1
+    askForSlot:
+      voiceEndOfInputTimeout:
+        lit:
+          seconds: 1
+    loopAnythingElse:
+      voiceEndOfInputTimeout:
+        lit:
+          seconds: 1
+  settingsErrorHandling:
+    errorHandling:
+      exit:
+        none: true
+    enableAgentEscalation:
+      lit: true
+    errorEventHandover:
+      exp: "MakeCommunication(\n  \"Sorry, an error occurred. One moment, please, while I put you through to someone who can help.\")"
+    agentEscalationConfirmation:
+      exp: "MakeCommunication(\n  \"You want to speak to an advisor. Is that correct?\")"
+    agentEscalationHandover:
+      exp: "MakeCommunication(\n  \"One moment, please, and I will put you through to someone.\")"
+    recognitionFailureEventHandover:
+      exp: "MakeCommunication(\n  \"Sorry, I'm having trouble understanding you. One moment, please, while I put you through to someone who can help.\")"
+    recognitionFailureEventHandling:
+      exit:
+        none: true
+  settingsPrompts:
+    ensureAudioInPrompts: false
+    promptMediaToValidate:
+      - mediaType: audio
+      - mediaType: tts
+  settingsBotFlow:
+    none: true
+  settingsUserInput:
+    enableBargeIn:
+      lit: true
+    enableAutomaticQuickReplies:
+      lit: true
+    noMatchesMax:
+      lit: 3
+    noInputsMax:
+      lit: 3
+    noInputsTimeout:
+      lit:
+        seconds: 7
+    confirmationRejectionsMax:
+      lit: 3
+    collectionLowConfidenceThreshold:
+      lit: 20
+    collectionHighConfidenceThreshold:
+      lit: 70
+    confirmationLowConfidenceThreshold:
+      lit: 40
+    noMatchApology:
+      exp: "MakeCommunication(\n  \"Sorry.\")"
+    noInputApology:
+      exp: "MakeCommunication(\n  \"Sorry, I didn't hear you.\")"
+    noToConfirmationApology:
+      exp: "MakeCommunication(\n  \"My mistake.\")"
+    confirmationNoMatchApology:
+      exp: "MakeCommunication(\n  \"Sorry, please say yes or no.\")"
+    confirmationNoInputApology:
+      exp: "MakeCommunication(\n  \"Sorry, I didn't hear you.  Please say yes or no.\")"
+  settingsKnowledge:
+    none: true
+  bots:
+    - bot:
+        name: Default Bot
+        refId: Default Bot_10
+        actions:
+          - askForBoolean:
+              name: Ask for Yes / No
+              question:
+                exp: "MakeCommunication(\n  \"Are you sure you want to connect to an agent?\")"
+              noInput:
+                exp: "MakeCommunication(\n  \"Say \\\"yes\\\" if you want to proceed or \\\"no\\\" if you don't.\")"
+              noMatch:
+                exp: "MakeCommunication(\n  \"Please say \\\"yes\\\" or \\\"no\\\".  Do you want to proceed?\")"
+              voiceEndOfInputTimeout:
+                noValue: true
+              outputs:
+                "no":
+                  actions:
+                    - disconnect:
+                        name: Disconnect
+          - exitBotFlow:
+              name: Exit Bot Flow
+  settingsNaturalLanguageUnderstanding:
+    nluDomainVersion:
+      intents: []
+      entities: []
+      entityTypes: []
+      language: en

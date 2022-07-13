@@ -1,0 +1,127 @@
+inboundShortMessage:
+  name: "{{flow_name}}"
+  division: Home
+  startUpRef: "/inboundShortMessage/states/state[Initial State_10]"
+  defaultLanguage: "{{default_language}}"
+  supportedLanguages:
+    en-us:
+      defaultLanguageSkill:
+        noValue: true
+  settingsErrorHandling:
+    errorHandling:
+      disconnect:
+        none: true
+  states:
+    - state:
+        name: Initial State
+        refId: Initial State_10
+        variables:
+          - stringVariable:
+              name: State.WRAP_UP_NAME
+              initialValue:
+                noValue: true
+              isInput: false
+              isOutput: false
+          - stringVariable:
+              name: State.WRAP_UP_TIME
+              initialValue:
+                noValue: true
+              isInput: false
+              isOutput: false
+        actions:
+          - decision:
+              name: Decision
+              condition:
+                exp: Message.IsNewConversation
+              outputs:
+                "yes":
+                  actions:
+                    - transferToAcd:
+                        name: Transfer to ACD
+                        targetQueue:
+                          lit:
+                            name: "{{queue_name}}"
+                        priority:
+                          lit: 0
+                        preferredAgents:
+                          noValue: true
+                        languageSkill:
+                          noValue: true
+                "no":
+                  actions:
+                    - callData:
+                        name: Call Data Action
+                        timeout:
+                          lit:
+                            minutes: 1
+                        category:
+                          {{data_action_category}}:
+                            dataAction:
+                              {{data_action_name}}:
+                                inputs:
+                                  CONVERSATION_ID:
+                                    exp: Message.ConversationId
+                                successOutputs:
+                                  WRAP_UP_NAME:
+                                    var: State.WRAP_UP_NAME
+                                  WRAP_UP_TIME:
+                                    var: State.WRAP_UP_TIME
+                                failureOutputs:
+                                  errorCode:
+                                    noValue: true
+                                  status:
+                                    noValue: true
+                                  correlationId:
+                                    noValue: true
+                                  entityId:
+                                    noValue: true
+                                  entityName:
+                                    noValue: true
+                                  userMessage:
+                                    noValue: true
+                                  userParamsMessage:
+                                    noValue: true
+                                  userParams.key:
+                                    noValue: true
+                                  userParams.value:
+                                    noValue: true
+                                  details.errorCode:
+                                    noValue: true
+                                  details.fieldName:
+                                    noValue: true
+                                  details.entityId:
+                                    noValue: true
+                                  details.entityName:
+                                    noValue: true
+                        outputs:
+                          success:
+                            actions:
+                              - sendResponse:
+                                  name: Send Response
+                                  messageBody:
+                                    exp: "Trim(Append(\n    \"Hi, it looks like we\", \n    \" \", \n    ToDisplayString(State.WRAP_UP_NAME), \n    If(IsNotSetOrEmpty(ToDisplayString(State.WRAP_UP_NAME)), \"\", \" \"), \n    \"your issue at\", \n    \" \", \n    ToDisplayString(State.WRAP_UP_TIME)))"
+                              - callBotFlow:
+                                  name: Call Bot Flow
+                                  inputText:
+                                    exp: Message.Message.body
+                                  exitReason:
+                                    noValue: true
+                                  intent:
+                                    noValue: true
+                                  botFlow:
+                                    Agnes Bot:
+                                      ver_latestPublished:
+                                        none: true
+                              - transferToAcd:
+                                  name: Transfer to ACD
+                                  targetQueue:
+                                    lit:
+                                      name: "{{queue_name}}"
+                                  priority:
+                                    lit: 0
+                                  preferredAgents:
+                                    noValue: true
+                                  languageSkill:
+                                    noValue: true
+          - disconnect:
+              name: Disconnect

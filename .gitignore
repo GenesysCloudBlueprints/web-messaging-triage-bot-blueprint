@@ -1,0 +1,15 @@
+node_modules/*
+.env
+
+# Local .terraform directories
+**/.terraform/*
+**.terraform.*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+sdk_debug.log
+
+node_modules/*
+package-lock.json
