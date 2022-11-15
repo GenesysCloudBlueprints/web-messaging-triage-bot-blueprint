@@ -1,4 +1,4 @@
-# Build a web messaging triage bot
+# Build a web messaging triage bot (DRAFT)
 
 > View the full [Genesys Cloud Web Messaging Triage Bot Blueprint](https://developer.mypurecloud.com/blueprints/web-messaging-triage-bot-blueprint/ "Goes to the Web Messaging Triage Bot Blueprint") in the Genesys Cloud Developer Center.
 
