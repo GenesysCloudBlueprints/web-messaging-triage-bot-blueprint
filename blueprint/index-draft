@@ -88,6 +88,8 @@ You are now ready to run this blueprint solution for your organization.
 
 1. Change to the **/terraform** folder and issue these commands:
 
+* `terraform init` - This command initializes a working directory containing Terraform configuration files.
+  
 * `terraform plan` - This command executes a trial run against your Genesys Cloud organization and shows you a list of all the Genesys Cloud resources it creates. Review this list and make sure that you are comfortable with the plan before continuing to the second step.
 
 * `terraform apply --auto-approve` - This command creates and deploys the necessary objects in your Genesys Cloud account. The --auto-approve flag completes the required approval step before the command creates the objects.
