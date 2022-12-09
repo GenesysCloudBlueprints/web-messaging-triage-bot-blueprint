@@ -1,6 +1,6 @@
 inboundShortMessage:
   name: "{{flow_name}}"
-  division: Home
+  division: "{{division}}"
   startUpRef: "/inboundShortMessage/states/state[Initial State_10]"
   defaultLanguage: "{{default_language}}"
   supportedLanguages:
@@ -109,7 +109,7 @@ inboundShortMessage:
                                   intent:
                                     noValue: true
                                   botFlow:
-                                    Agnes Bot:
+                                    web-messaging-quick-response-bot:
                                       ver_latestPublished:
                                         none: true
                               - transferToAcd:
