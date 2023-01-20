@@ -8,12 +8,13 @@ category: 4
 summary: |
  This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to see if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all this solution's components with the Terraform Genesys Cloud CX as Code provider.
 ---
+
 :::{"alert":"primary","title":"About Genesys Cloud Blueprints","autoCollapse":false} 
 Genesys Cloud blueprints were built to help you jump-start building an application or integrating with a third-party partner. 
 Blueprints are meant to outline how to build and deploy your solutions, not a production-ready turn-key solution.
  
-For more details on Genesys Cloud blueprint support and practices 
-please see our Genesys Cloud blueprint [FAQ](https://developer.genesys.cloud/blueprints/faq)sheet.
+For more details on Genesys Cloud blueprint support and practices, 
+see our Genesys Cloud blueprint [FAQ](https://developer.genesys.cloud/blueprints/faq)sheet.
 :::
 
 This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to see if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all this solution's components with the Terraform Genesys Cloud CX as Code provider.
@@ -25,17 +26,14 @@ This Genesys Cloud Developer Blueprint provides instructions for building a web 
 An organization wants to filter incoming messages to see if the conversation has been resolved and asks customers if they still want to speak to an agent:
 
 1. **The customer sends a message.** The agent receives the customer's incoming message and resolves or processes their request.
-
 2. **The agent ends the interaction.** The customer's concern has been resolved or processed. 
-
-3. **The customer sends another message.** The customer receives a message that their concern has been resolved or processed and bot flow asks if the customer wants to speak to an agent.
-   
+3. **The customer sends another message.** The customer receives a message that their concern has been resolved or processed and bot flow asks if the customer wants to speak to an agent.   
 4. **The customer selects yes or no.** The customer connects to an agent if they respond Yes. Otherwise, the message will not be sent to the agent.
 
 ## Solution components
 
 * **Genesys Cloud CX** - A suite of services for enterprise-grade communications, collaboration, and contact center management. In this solution, you use an Architect inbound message flow, a Genesys Cloud integration, a Genesys Cloud queue, web messaging configuration, and web messaging deployment.
-* **Architect flows** - A flow in Architect, a drag-and-drop web-based design tool, dictates how Genesys Cloud handles inbound or outbound interactions.  In this solution, an inbound message flow provides the routing layer that gets the customer to the right queue.
+* **Architect flows** - A flow in Architect, a drag-and-drop web-based design tool, dictates how Genesys Cloud handles inbound or outbound interactions.  In this solution, an inbound message flow provides the routing layer that gets the customer to the correct queue.
 * **Genesys Dialog Engine Bot Flows** - Build bots within Architect and then integrate them into Architect call, chat, and message flows. This process unifies the bot and flow authoring experience for administrators, flow authors, and contact center managers.
 * **Web messaging and Messenger** - The Genesys Cloud messaging platform that enables asynchronous conversations and a unified agent and supervisor experience across all Genesys Cloud messaging channels. Messenger is the predefined message window customers use to communicate with bots and agents. 
 * **CX as Code** - A Genesys Cloud Terraform provider that provides an interface for declaring core Genesys Cloud objects.
@@ -61,7 +59,7 @@ An organization wants to filter incoming messages to see if the conversation has
 
 ### Download the repository containing the project files
 
-1. Clone the [web-messaging-triage-bot-blueprint repository](https://github.com/GenesysCloudBlueprints/web-messaging-triage-bot-blueprint "Opens the web-messaging-triage-bot-blueprintv repository in GitHub").
+1. Clone the [web-messaging-triage-bot-blueprint repository](https://github.com/GenesysCloudBlueprints/web-messaging-triage-bot-blueprint "Opens the web-messaging-triage-bot-blueprintv repository") in GitHub.
 
 ### Set up Genesys Cloud
 
@@ -79,7 +77,7 @@ In the **blueprint/terraform/dev.auto.tfvars** file, set the following values, w
 
 * `client_id` - The value of your OAuth Client ID using Client Credentials for the data action integration.
 * `client_secret`- The value of your OAuth Client secret using Client Credentials for the data action integration.
-* `email` - This value is your email account with Genesys Cloud. It will be used to assign you to the appropriate Genesys Cloud queue.
+* `email` - This value is your email account with Genesys Cloud. The value is used to assign the appropriate Genesys Cloud queue.
 
 The following is an example of the dev.auto.tfvars file.
 
@@ -91,7 +89,7 @@ email           = "test-email@company.com"
 
 ### Run Terraform
 
-You are now ready to run this blueprint solution for your organization. 
+You are ready to run this blueprint solution for your organization. 
 
 1. Change to the **/terraform** folder and issue these commands:
 
@@ -117,20 +115,35 @@ After creating the Genesys Cloud objects, use a Messenger deployment to add a Me
 ### Test the solution
 
 1. Go to your website and start a web message.
+
    ![Start web message interaction](images/1-customer-interaction.png "Start web message interaction")
+
 2. To answer the message as an agent in your Genesys Cloud organization, change your status to **On Queue** and answer the incoming interaction.
+
 3. Interact with the customer by sending responses as an agent.
+
    ![Agent message interaction](images/2-agent-interaction.png "Agent message interaction")
+
 4. End the interaction with the customer and select a wrap-up code.
+
    ![Select wrap-up code](images/3-processed-wrapup.png "Select wrap-up code")
+
 5. As a customer, send another message. Select Yes from the quick response to be connected again to an agent.
+
    ![Customer answers yes](images/4-quick-response.png "Customer answers yes")
+
 6. As an agent, answer the interaction and resume your conversation with the customer.
+
    ![Agent message interaction](images/5-update-order.png "Agent message interaction")
+
 7. As an agent, end the interaction and select a wrap-up code.
+
    ![Select wrap-up code](images/6-processed-wrapup-2.png "Select wrap-up code")
+
 8. As a customer, send another message and select No from the quick response.
+
    ![Customer answers no](images/7-quick-response-no.png "Customer answers no")
+   
 9. The last customer's message will not be routed to ACD and the agent.
 
 ## Additional resources
