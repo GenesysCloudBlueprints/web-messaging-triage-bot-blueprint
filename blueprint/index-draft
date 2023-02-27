@@ -6,7 +6,7 @@ icon: blueprint
 image: images/banner.png
 category: 4
 summary: |
- This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to see if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all this solution's components with the Terraform Genesys Cloud CX as Code provider.
+ This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to check if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all the solution components of the blueprint with the Terraform Genesys Cloud CX as Code provider.
 ---
 
 :::{"alert":"primary","title":"About Genesys Cloud Blueprints","autoCollapse":false} 
@@ -17,18 +17,18 @@ For more details on Genesys Cloud blueprint support and practices,
 see our Genesys Cloud blueprint [FAQ](https://developer.genesys.cloud/blueprints/faq)sheet.
 :::
 
-This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to see if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all this solution's components with the Terraform Genesys Cloud CX as Code provider.
+This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triages the end of the conversation to check if it has been resolved and asks customers if they still want to speak to an agent. You can deploy all the solution components of the blueprint with the Terraform Genesys Cloud CX as Code provider.
 
 ![Messaging triage bot](images/overview.png "Messaging triage bot")
 
 ## Scenario
 
-An organization wants to filter incoming messages to see if the conversation has been resolved and asks customers if they still want to speak to an agent:
+An organization wants to filter the incoming messages and check if the conversation has been resolved and asks customers if they still want to speak to an agent:
 
 1. **The customer sends a message.** The agent receives the customer's incoming message and resolves or processes their request.
 2. **The agent ends the interaction.** The customer's concern has been resolved or processed. 
 3. **The customer sends another message.** The customer receives a message that their concern has been resolved or processed and bot flow asks if the customer wants to speak to an agent.   
-4. **The customer selects yes or no.** The customer connects to an agent if they respond Yes. Otherwise, the message will not be sent to the agent.
+4. **The customer selects yes or no.** The customer connects to an agent if they respond Yes. Otherwise, the message is not sent to the agent.
 
 ## Solution components
 
@@ -63,17 +63,17 @@ An organization wants to filter incoming messages to see if the conversation has
 
 ### Set up Genesys Cloud
 
-1. To run this project using the Terraform provider, open a Terminal window and set the following environment variables:
+1. To run this project using the Terraform provider, open a terminal window and set the following environment variables:
 
- * `GENESYSCLOUD_OAUTHCLIENT_ID` - This variable is the Genesys Cloud client credential grant Id that CX as Code executes against. 
- * `GENESYSCLOUD_OAUTHCLIENT_SECRET` - This variable is the Genesys Cloud client credential secret that CX as Code executes against. 
+ * `GENESYSCLOUD_OAUTHCLIENT_ID` - This variable is the Genesys Cloud client credential grant Id that Terraform Genesys Cloud CX as Code executes against. 
+ * `GENESYSCLOUD_OAUTHCLIENT_SECRET` - This variable is the Genesys Cloud client credential secret that Terraform Genesys Cloud CX as Code executes against. 
  * `GENESYSCLOUD_REGION` - This variable is the Genesys Cloud region in your organization.
 
 2. Run Terraform in the folder you set the environment variables. 
 
 ### Configure your Terraform build
 
-In the **blueprint/terraform/dev.auto.tfvars** file, set the following values, which are specific to your Genesys Cloud organization:
+In the `blueprint/terraform/dev.auto.tfvars` file, set the following values, which are specific to your Genesys Cloud organization:
 
 * `client_id` - The value of your OAuth Client ID using Client Credentials for the data action integration.
 * `client_secret`- The value of your OAuth Client secret using Client Credentials for the data action integration.
@@ -89,9 +89,9 @@ email           = "test-email@company.com"
 
 ### Run Terraform
 
-You are ready to run this blueprint solution for your organization. 
+Run the following command: 
 
-1. Change to the **/terraform** folder and issue these commands:
+1. Change to the `/terraform` folder and issue these commands:
 
 * `terraform init` - This command initializes a working directory containing Terraform configuration files.
   
