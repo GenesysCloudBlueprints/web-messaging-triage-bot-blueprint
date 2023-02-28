@@ -6,7 +6,7 @@ icon: blueprint
 image: images/banner.png
 category: 4
 summary: |
-This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triage the end of the conversation to see if the conversation has been resolved and asks  customers if they still want to speak to an agent. You can deploy all the components used in this solution with the Terraform Genesys Cloud CX as Code provider.
+  This Genesys Cloud Developer Blueprint provides instructions for building a web messaging triage bot. The messaging bot triage the end of the conversation to see if the conversation has been resolved and asks  customers if they still want to speak to an agent. You can deploy all the components used in this solution with the Terraform Genesys Cloud CX as Code provider.
 ---
 :::{"alert":"primary","title":"About Genesys Cloud Blueprints","autoCollapse":false} 
 Genesys Cloud blueprints were built to help you jump-start building an application or integrating with a third-party partner. 
