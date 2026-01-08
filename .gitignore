@@ -1,6 +1,14 @@
+# Dependencies
 node_modules/*
-.env
+package-lock.json
 
+# Environment variables and credentials
+.env
+.env.local
+.env.*.local
+*.credentials
+
+# Terraform files
 # Local .terraform directories
 **/.terraform/*
 **.terraform.*
@@ -9,7 +17,38 @@ node_modules/*
 *.tfstate
 *.tfstate.*
 
+# Terraform variable files with sensitive data
+terraform.tfvars
+*.auto.tfvars.local
+*_override.tf
+*_override.tf.json
+
+# Terraform crash log files
+crash.log
+crash.*.log
+
+# Terraform lock files (uncomment if you want to ignore them)
+# .terraform.lock.hcl
+
+# Logs
+*.log
 sdk_debug.log
 
-node_modules/*
-package-lock.json
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# History files
+.history/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
